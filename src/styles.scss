@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/presets/containers.scss";
+@import "./assets/presets/presets.scss";
+@import "./assets/presets/table.scss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: "Poppins", sans-serif; }
+
+p, a, h1, h2, h3, li, b, strong, span, button, input {
+  font-family: "Poppins", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+section {
+  margin-left: 5rem;
+  padding: 3rem;
+}
+
+// .mat-form-field-wrapper {
+//   padding-bottom: 0 !important;
+// }
+
+
+//Styles for swal alert
+.vaqueroAlert {
+    .swal2-popup {
+      background: #AA2930;
+      max-width: 320px;
+      padding: 25px 0 0;
+      border-radius: 5px;
+    }
+    .swal2-icon.swal2-warning {
+        color: #fff !important;
+        border-color: #fff !important;
+    }    
+    .swal2-icon.swal2-success {
+        color: #fff !important;
+        border-color: #fff !important;
+    }
+    .swal2-title {
+      color: #fff;
+      font-size: 1em;
+      padding: 0;
+      line-height: 1.2;
+      font-family: "Poppins", sans-serif;
+      padding: 0 30px;
+    }
+    .swal2-html-container {
+      color: #fff;
+      font-size: 0.9em;
+      margin: 0;
+      margin-top: 15px;
+      padding: 0 35px;
+    }
+    .swal2-actions {
+      width: 100%;
+      // flex-direction: column;
+      button {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+        border: 0;
+        background-color: transparent;
+        color: #fff;
+        height: 50px;
+        // border-top: 1px solid #EDEDED;
+        // font-weight: 600;
+        font-family: "Poppins", sans-serif;
+        &:focus{
+          outline: none;
+          box-shadow: none;
+        }
+        &.red{
+          color:#de0404;
+        }
+        &.blue{
+          color: #094a9f;
+        }
+      }
+    }
+}

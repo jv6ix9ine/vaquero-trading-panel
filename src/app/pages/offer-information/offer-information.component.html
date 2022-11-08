@@ -1,0 +1,108 @@
+<section>
+    <div class="component-main container">
+        <mat-card class="offer-card" *ngIf="!loader">
+            <div class="header">
+                <h1>Offer from <strong>{{offer?.name}}</strong></h1>
+                <div class="buttons">
+                    <button mat-mini-fab class="accept" matTooltip="Accept offer" (click)="acceptOffer(offerId)">
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    <button mat-mini-fab class="decline" matTooltip="Decline offer" (click)="declineOffer(offerId)" >
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <br>
+            <mat-divider></mat-divider>
+            <br>
+
+            <div class="offer-body">
+                <div class="cattle-info">
+                    <mat-card>
+                        <mat-card-header>
+                          <div mat-card-avatar [ngStyle]="{ 'background-image' : 'url(' + cattle.items[0]?.url + ')' }" class="avatar"></div>
+                          <mat-card-title>Lot #:  {{cattle?.batch}}</mat-card-title>
+                          <mat-card-subtitle>Average WT: {{cattle?.averageWT}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-selection-list  [multiple]="false">
+                                <mat-list-option>
+                                  Asking Price: {{cattle?.askingPrice | currency}}
+                                </mat-list-option>
+                                <!-- <mat-list-option>
+                                    <mat-form-field>
+                                      <textarea matInput readonly> {{cattle?.comments}} </textarea>
+                                    </mat-form-field>
+                                </mat-list-option> -->
+                                <mat-list-option>
+                                    Quantity & Type: {{cattle?.quantityAndType}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Slide: {{cattle?.slide}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Weighing Cond: {{cattle?.weighingCond}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Breed Type: {{cattle?.breedType}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Frame: {{cattle?.frame}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Current Location: {{cattle?.currentLocation}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Date: {{cattle?.date}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Feed: {{cattle?.feed}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Delivery Method: {{cattle?.deliveryMethod}}
+                                  </mat-list-option>
+                              </mat-selection-list>
+                              <p style="padding: 0 1em; text-align: justify;">Comments: <br>{{cattle?.comments}}</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <!-- <button mat-button>LIKE</button>
+                          <button mat-button>SHARE</button> -->
+                        </mat-card-actions>
+                      </mat-card>
+                </div>
+                <div class="offer-info">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>From:  {{offer?.name}}</mat-card-title>
+                            <mat-card-subtitle>Email: {{offer?.email}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-selection-list  [multiple]="false">
+                                <mat-list-option>
+                                  Offer Price: {{offer?.offer | currency}}
+                                </mat-list-option>
+                                <mat-list-option>
+                                  Batch #: {{offer?.lot}}
+                                </mat-list-option>
+                                  <mat-list-option>
+                                    Status: {{offer?.status?.toUpperCase()}}
+                                  </mat-list-option>
+                                  <mat-list-option>
+                                    Phone: {{offer?.phone}}
+                                  </mat-list-option>
+                                </mat-selection-list>
+                                <p style="padding: 0 1em; width: 100%; overflow-wrap: anywhere; text-align: justify;">Comments: <br>{{offer?.comments}}</p>
+                                <br>
+                                <div class="images">
+                                  <ng-container *ngFor="let img of cattle.items.slice(0, 1)">
+                                    <img src="{{img?.url}}" alt="">
+                                  </ng-container>
+                                </div>
+                        </mat-card-content>
+                    </mat-card>
+                  </div>
+            </div>
+        </mat-card>
+      </div>
+</section>

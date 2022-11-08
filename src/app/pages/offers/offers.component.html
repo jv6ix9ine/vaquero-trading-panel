@@ -1,0 +1,192 @@
+<section>
+  <div class="component-main container">
+    <div class="header-container">
+      <h1 class="titles">Offers</h1>
+    </div>
+    <mat-tab-group>
+      <!-- Pending table -->
+      <mat-tab label="Pending">
+        <!-- <mat-form-field appearance="standard">
+                    <img src="assets/icons/search.png" alt="" />
+                    <input
+                      matInput
+                      (keyup)="applyFilter($event)"
+                      placeholder="Search..."
+                      #input style="padding-left: 45px;"
+                    />
+                  </mat-form-field> -->
+
+        <div class="table-container">
+          <div class="searching-text" *ngIf="searching">
+            <div class="loading">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <table mat-table [dataSource]="pendingDataSource" matSort matSortActive="id" matSortDisableClear
+            matSortDirection="desc" *ngIf="!searching">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <mat-icon>arrow_drop_down</mat-icon>
+              </th>
+              <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="batch">
+              <th mat-header-cell *matHeaderCellDef>Batch</th>
+              <td mat-cell *matCellDef="let element">{{ element.lot }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="offer">
+              <th mat-header-cell *matHeaderCellDef>Offer</th>
+              <td mat-cell *matCellDef="let element">{{ element.offer }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell *matCellDef="let element">{{ element.created | date}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let element">
+                <!-- <button (click)="acceptOffer(element._id)" mat-button class="request"
+                  style="margin-right: 5px;">Accept</button>
+                <button (click)="declineOffer(element._id)" mat-button class="delete">Decline</button> -->
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="navigateToOfferInformationPage(element._id)" >
+                    <mat-icon style="color: #52bbd7;">info_outline</mat-icon>
+                    <span>More information</span>
+                  </button>
+                  <button mat-menu-item (click)="acceptOffer(element._id)">
+                    <mat-icon style="color: #61b466;">done</mat-icon>
+                    <span>Accept offer</span>
+                  </button>
+                  <button mat-menu-item (click)="declineOffer(element._id)">
+                    <mat-icon style="color: #d65713;">close</mat-icon>
+                    <span>Decline offer</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsPendingTable"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsPendingTable"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="6">No data to show</td>
+            </tr>
+          </table>
+        </div>
+      </mat-tab>
+
+      <!-- Accepted table -->
+      <mat-tab label="Accepted">
+        <div class="table-container">
+          <div class="searching-text" *ngIf="searching">
+            <div class="loading">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <table mat-table [dataSource]="acceptedDataSource" matSort matSortActive="id" matSortDisableClear
+            matSortDirection="desc" *ngIf="!searching">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <mat-icon>arrow_drop_down</mat-icon>
+              </th>
+              <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="batch">
+              <th mat-header-cell *matHeaderCellDef>Batch</th>
+              <td mat-cell *matCellDef="let element">{{ element.lot }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="offer">
+              <th mat-header-cell *matHeaderCellDef>Offer</th>
+              <td mat-cell *matCellDef="let element">{{ element.offer }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsAcceptedTable"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsAcceptedTable"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="6">No data to show</td>
+            </tr>
+          </table>
+        </div>
+      </mat-tab>
+
+      <!-- Declined table -->
+      <mat-tab label="Declined">
+        <div class="table-container">
+          <div class="searching-text" *ngIf="searching">
+            <div class="loading">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <table mat-table [dataSource]="declinedDataSource" matSort matSortActive="id" matSortDisableClear
+            matSortDirection="desc" *ngIf="!searching">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                <mat-icon>arrow_drop_down</mat-icon>
+              </th>
+              <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="batch">
+              <th mat-header-cell *matHeaderCellDef>Batch</th>
+              <td mat-cell *matCellDef="let element">{{ element.lot }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="offer">
+              <th mat-header-cell *matHeaderCellDef>Offer</th>
+              <td mat-cell *matCellDef="let element">{{ element.offer }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell *matCellDef="let element">{{ element.created | date}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="deleteOffer(element._id)" class="delete" matTooltip="Delete"><mat-icon style="color: red;">delete_outline</mat-icon></button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsDeclinedTable"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsDeclinedTable"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="6">No data to show</td>
+            </tr>
+          </table>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</section>

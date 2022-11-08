@@ -1,0 +1,49 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+    <div class="logo-container">
+        <div class="logo" (click)="toggleCollapse()"><img src="assets/images/logo-white.png" alt=""></div>
+        <div class="logo-text" *ngIf="collapsed">Vaquero Trading</div>
+        <div class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+            <i class="fal fa-times close-icon"></i>
+        </div>
+    </div>
+    <ul class="sidenav-nav">
+        <ng-container>
+            <div class="top">
+                <li class="sidenav-nav-item" *ngFor="let item of navData">
+                    <a class="sidenav-nav-link" [routerLink]="item.routeLink" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}" (click)="item.icon">
+                        <i class="sidenav-link-icon" [class]="item.icon"></i>
+                        <span class="sidenav-link-text" *ngIf="collapsed">{{item.label}}</span>
+                    </a>
+                </li>
+            </div>
+            <div class="bottom">
+                <li class="sidenav-nav-item">
+                    <a class="sidenav-nav-link" [matMenuTriggerFor]="menu">
+                        <!-- <mat-icon class="sidenav-link-icon">settings</mat-icon> -->
+                        <i class="sidenav-link-icon fal fa-cog"></i>
+
+                        <span class="sidenav-link-text" *ngIf="collapsed">Settings</span>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="openChangePasswordModal()">
+                                <mat-icon>lock</mat-icon>
+                                Change password
+                            </button>
+                            <button mat-menu-item disabled="">
+                                <mat-icon>account_circle</mat-icon>
+                                Profile 
+                            </button>
+                        </mat-menu>
+                    </a>
+                </li>
+                <li class="sidenav-nav-item">
+                    <a class="sidenav-nav-link" routerLink="login" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}" (click)="logout()">
+                        <i class="sidenav-link-icon fal fa-sign-out-alt"></i>
+                        <span class="sidenav-link-text" *ngIf="collapsed">Logout</span>
+                    </a>
+                </li>
+            </div>
+        </ng-container>
+    </ul>
+</div>

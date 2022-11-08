@@ -1,0 +1,129 @@
+.header-container {
+    background-color: #fff;
+    color: black;
+    padding: 1em;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      margin: 0;
+    }
+    .button-wrap{
+      button{
+        color: white;
+        margin-left: 10px;
+        mat-icon{
+          margin-right: 10px;
+          color: white;
+        }
+      }
+
+      #cancelBtn {
+          background-color: red;
+      }
+    }
+}
+
+mat-label {
+  color: black;
+}
+
+mat-form-field {
+  width: 100%;
+  padding: 0 15px 15px 15px;
+}
+
+input {
+  font-weight: bold;
+  color: black;
+}
+
+.btn-add {
+  background-color: green !important;
+}
+.btn-add:disabled {
+  background-color: gray !important;
+}
+
+.custom-dropzone {
+  margin-top: 10px;
+}
+
+#dropzone {
+        display: grid;
+        grid-auto-flow: column dense;
+        grid-auto-rows: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        gap: 1em 2em;
+        grid-template-areas: ". ";
+        padding: 0 10px;
+        // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+        //     background-color: white !important;
+        // }
+        .order-input{
+            grid-row-start: 2;
+            width: 100px;
+        }
+}
+
+#cattleForm {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+
+  .full{
+    flex: 0 1 100%;
+    // padding: 0px!important;
+  }
+
+  .row{
+    flex: 0 1 50%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // background-color: #424242;
+    margin-bottom: 15px;
+    mat-form-field{
+      flex: 0 1 50%;
+    }
+  }
+}
+
+.imageForm {
+    display: grid;
+    grid-auto-flow: column dense;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 1em 2em;
+    grid-template-areas: ". .";
+    // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    //     background-color: white !important;
+    // }
+    .order-input{
+        grid-row-start: 2;
+        width: 100px;
+    }
+}
+
+.actual-images{
+    padding-top: 35px;
+  }
+  .actual-img-preview{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    img{
+      max-width: 45%;
+      margin: 10px 0;
+      transition: all 0.3s ease-in-out;
+    }
+    img:hover{
+      cursor: pointer;
+      filter: grayscale(100%);
+      transform: scale(1.05);
+    }
+  }

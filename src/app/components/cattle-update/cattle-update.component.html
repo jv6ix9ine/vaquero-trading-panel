@@ -1,0 +1,120 @@
+<section>
+    <div class="header-container">
+        <h1 class="titles">Actualización del proyecto</h1>
+        <div class="button-wrap">
+            <button id="cancelBtn" mat-button [routerLink]="['/cattle']">
+                Cancelar
+            </button>
+            <button mat-button class="btn-add" [disabled]="batch === '' || quantityAndType === '' || slide === '' || averageWT === '' || weighningCond === '' || breedType === '' || frame === '' || currentLocation === '' || comments === '' || feed === '' || deliveryMethod === '' || askingPrice == null"  (click)="save()">
+                Guardar
+            </button>
+        </div>
+    </div>
+    <h4>All fields are required*</h4><br>
+
+    <form id="cattleForm">
+
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Batch</mat-label>
+                <input matInput [(ngModel)]="batch" name="batch" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Quantity and Type</mat-label>
+                <input matInput [(ngModel)]="quantityAndType" name="quantityAndType" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Slide</mat-label>
+                <input matInput [(ngModel)]="slide" name="slide" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Average WT</mat-label>
+                <input matInput [(ngModel)]="averageWT" name="averageWT" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Weighning Cond</mat-label>
+                <input matInput [(ngModel)]="weighningCond" name="weighningCond" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Breed Type</mat-label>
+                <input matInput [(ngModel)]="breedType" name="breedType" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline" required>
+                <mat-label>Frame</mat-label>
+                <input matInput [(ngModel)]="frame" name="frame">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Current Location</mat-label>
+                <input matInput [(ngModel)]="currentLocation" name="currentLocation" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Comments</mat-label>
+                <input matInput [(ngModel)]="comments" name="comments" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Feed</mat-label>
+                <input matInput [(ngModel)]="feed" name="feed" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Delivery Method</mat-label>
+                <input matInput [(ngModel)]="deliveryMethod" name="deliveryMethod" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Asking Price</mat-label>
+                <input matInput type="number" [(ngModel)]="askingPrice" name="askingPrice" min="0" required>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div class="table-container">
+        <form class="imageForm" action="">
+            <div class="form-group dropzone">
+                <mat-label>Cattle Images</mat-label>
+                <div class="custom-dropzone" ngx-dropzone [multiple]=true [accept]="'image/*'" [maxFileSize]="2000000"
+                    (change)="onUploadItems($event)">
+                    <ngx-dropzone-label style="flex: 0 0 100%;">
+                        Arrasta tus archivos aquí o da click para subirlos
+                    </ngx-dropzone-label>
+                    <div style="margin: 0 auto !important; display: flex!important;">
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let banner of items"
+                            [file]="banner" [removable]="true" (removed)="onRemoveItems(banner)">
+                            <ngx-dropzone-label style="color: white; padding: 0 5px">
+                                <br /><br />
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                        [style.width]="(uploadProgress | async) + '%'"
+                                        [attr.aria-valuenow]="uploadProgress | async" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <div style="overflow: hidden; padding: 0.75px 1.25rem" *ngIf="urlImgListado"
+                                    class="alert alert-info" role="alert">
+                                    Listo
+                                </div>
+                            </ngx-dropzone-label>
+                        </ngx-dropzone-image-preview>
+                    </div>
+                </div>
+                <div class="actual-images" *ngIf="!initLoader">
+                    <mat-label>Current images (click on an image to delete it)</mat-label>
+                    <div class="actual-img-preview">
+                        <ng-container *ngFor="let item of cattle.items; let i = index">
+                            <img class="resources-item" src="{{item.url}}" alt="Recurso del portafolio"
+                                (click)="deleteItem(item, i)">
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

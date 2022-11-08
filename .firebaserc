@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "vaquero-trading"
+  },
+  "targets": {
+    "vaquero-trading": {
+      "hosting": {
+        "panel": [
+          "vaquero-trading-panel"
+        ]
+      }
+    }
+  }
+}

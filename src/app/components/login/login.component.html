@@ -1,0 +1,39 @@
+<div class="loginContainer">
+    <div class="img-box">
+        <img src="assets/images/cattle.jpg" alt="" />
+    </div>
+
+    <div class="content-box">
+        <div class="logo-box">
+            <img src="assets/images/logo-dark.png" alt="" />
+        </div>
+
+        <div class="form-box">
+            <h2>Login</h2>
+
+            <form action="" autocomplete="off" [formGroup]="loginForm">
+                <div class="input-box">
+                    <span>Email</span>
+                    <input type="email" name="" placeholder="Correo electronico" formControlName="email" />
+                </div>
+
+                <div class="input-box">
+                    <span>Password</span>
+                    <input type="password" placeholder="Contraseña" formControlName="password" />
+                </div>
+                <div class="input-box">
+                    <!-- <input class="button" type="submit" value="Iniciar Sesión" (click)="login()" /> -->
+                    <button mat-flat-button (click)="login()" type="submit" [disabled]="loginForm.invalid">Iniciar
+                        Sesión</button>
+                </div>
+            </form>
+            <p class="error-msg" *ngIf="showError">{{loginError.message}}</p>
+            <div *ngIf="loading" class="loading">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>

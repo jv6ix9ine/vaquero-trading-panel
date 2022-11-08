@@ -1,0 +1,106 @@
+<section>
+    <div class="header-container">
+        <h1 class="titles">Add Cattle</h1>
+        <div class="button-wrap">
+            <button id="cancelBtn" mat-button [routerLink]="['/cattle']">
+                Cancel
+            </button>
+            <button mat-button class="btn-add" [disabled]="items.length < 1 || cattleForm.invalid" (click)="saveCattle()">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+    <form id="cattleForm" [formGroup]="cattleForm">
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Batch</mat-label>
+                <input matInput formControlName="batch" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Quantity and Type</mat-label>
+                <input matInput formControlName="quantityAndType" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Slide</mat-label>
+                <input matInput formControlName="slide" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Average WT</mat-label>
+                <input matInput formControlName="averageWT" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Weighning Cond</mat-label>
+                <input matInput formControlName="weighingCond" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Breed Type</mat-label>
+                <input matInput formControlName="breedType" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Frame</mat-label>
+                <input matInput formControlName="frame" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Current Location</mat-label>
+                <input matInput formControlName="currentLocation" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Comments</mat-label>
+                <input matInput formControlName="comments" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Feed</mat-label>
+                <input matInput formControlName="feed" required>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Delivery Method</mat-label>
+                <input matInput formControlName="deliveryMethod" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Asking Price</mat-label>
+                <input type="number" matInput formControlName="askingPrice" required min="0">
+            </mat-form-field>
+        </div>
+    </form>
+    <div class="table-container">
+        <div class="form-group dropzone">
+            <mat-label>Images</mat-label>
+            <div class="custom-dropzone" ngx-dropzone [multiple]=true [accept]="'image/*'" [maxFileSize]="2000000"
+                (change)="onUploadItems($event)">
+                <ngx-dropzone-label style="flex: 0 0 100%;">
+                    Arrasta tus archivos aquí o da click para subirlos
+                </ngx-dropzone-label>
+                <div style="margin: 0 auto !important; display: flex!important;">
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let banner of items"
+                        [file]="banner" [removable]="true" (removed)="onRemoveItems(banner)">
+                        <ngx-dropzone-label style="color: white; padding: 0 5px">
+                            <br /><br />
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                    [style.width]="(uploadProgress | async) + '%'"
+                                    [attr.aria-valuenow]="uploadProgress | async" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                            <div style="overflow: hidden; padding: 0.75px 1.25rem" *ngIf="urlImgListado"
+                                class="alert alert-info" role="alert">
+                                Listo
+                            </div>
+                        </ngx-dropzone-label>
+                    </ngx-dropzone-image-preview>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

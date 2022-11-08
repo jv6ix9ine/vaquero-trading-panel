@@ -1,0 +1,55 @@
+mat-selection-list{
+    mat-list-option{
+        font-family: "Poppins", sans-serif !important;
+        font-size: 1em;
+    }
+}
+
+section{
+    .component-main {
+        .offer-card{
+            width: 100%;
+            mat-divider{
+                margin: 1em 0;
+            }
+            .header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                h1{
+                    font-weight: normal;
+                }
+                .buttons{
+                    width: 10%;
+                    display: flex;
+                    justify-content: space-between;
+                    .decline{
+                        background-color: #d65713;
+                    }
+                    .accept{
+                        background-color: #61b466;
+                    }
+                }
+            }
+
+            .offer-body{
+                margin-top: 1em;
+                display: flex;
+                gap: 2%;
+                .cattle-info{
+                    width: 50%;
+                    mat-card{
+                        mat-card-header{
+                            .avatar{
+                                background-size: cover;
+                            }
+                        }
+                    }
+                }
+                .offer-info{
+                    width: 50%;
+                }
+            }
+        }
+    }
+}

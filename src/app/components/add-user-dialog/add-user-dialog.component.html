@@ -1,0 +1,78 @@
+<mat-card style="box-shadow: none">
+  <mat-card-content class="container-dialog">
+    <form [formGroup]="form_group">
+      <div class="row">
+        <div>
+          <p>Full Name</p>
+          <mat-form-field appearance="outline">
+            <input type="text" matInput formControlName="name" />
+          </mat-form-field>
+          <div *ngIf="
+              form_group.get('name')?.invalid &&
+              (form_group.get('name')?.dirty || form_group.get('name')?.touched)
+            " class="error-form">
+            <span> This field is required </span>
+          </div>
+        </div>
+        <div>
+          <p *ngIf="data.type != 2">Email</p>
+          <mat-form-field appearance="outline" *ngIf="data.type != 2">
+            <input type="text" matInput formControlName="email" />
+          </mat-form-field>
+          <div *ngIf="
+              form_group.get('email')?.invalid &&
+              (form_group.get('email')?.dirty ||
+                form_group.get('email')?.touched)
+            " class="error-form">
+            <span *ngIf="form_group.errors?.['email']">
+              Please enter a valid email
+            </span>
+          </div>
+        </div>
+        <div>
+          <p *ngIf="data.type != 2">Password (min. 6 characters)</p>
+          <mat-form-field appearance="outline" *ngIf="data.type != 2">
+            <input type="password" matInput formControlName="password" />
+          </mat-form-field>
+          <div *ngIf=" 
+              form_group.get('password')?.invalid &&
+              (form_group.get('password')?.dirty ||
+                form_group.get('password')?.touched)
+            " class="error-form">
+            <span *ngIf="form_group.errors?.['minLength']">
+              Password must be at least 6 characters long
+            </span>
+          </div>
+        </div>
+        <br>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>User Type</mat-label>
+            <mat-select formControlName="userType">
+              <mat-option value="admin">
+                Admin
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+  <br><br>
+  <mat-card-actions>
+    <div class="row" style="display: flex;justify-content: center;">
+      <button mat-button mat-dialog-close style="color: #d65713" [disabled]="loader">Cancel</button>
+      <button class="addBtn" mat-button style="background-color: #61b466; border: #61b466; color: white"
+        *ngIf="data.type == 1" (click)="create()" [disabled]="loader">
+        Create User
+      </button>
+      <button class="addBtn" mat-button style="background-color: #61b466; border: #61b466; color: white"
+        *ngIf="data.type == 2" (click)="update()" [disabled]="loader">
+        Update User
+      </button>
+    </div>
+    <div class="row" style="text-align: center; justify-content: center; align-items: center; margin-top: 15px;">
+      <span *ngIf="loader" style="color: #61b466;font-weight: bold;">Saving data...</span>
+    </div>
+  </mat-card-actions>
+</mat-card>
